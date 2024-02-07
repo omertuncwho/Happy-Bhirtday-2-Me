@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff00cc, #3333ff, #00ffcc);
+    overflow: hidden;
+  }
+
+  .balloon {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background-color: #ff9999;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: balloonAnimation 4s infinite ease-in-out;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffff66;
+    border-radius: 50%;
+    animation: confettiAnimation 3s infinite linear;
+  }
+
+  @keyframes balloonAnimation {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-150px) scale(1.1);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes confettiAnimation {
+    0% {
+      transform: translateY(0) rotateZ(0deg);
+    }
+    100% {
+      transform: translateY(500px) rotateZ(720deg);
+    }
+  }
+</style>
+</head>
+<body>
+<script>
+  window.onload = function() {
+    var body = document.querySelector("body");
+    var message = document.createElement("h1");
+    message.textContent = "🎉 Today is my birthday! 🎂";
+    message.style.color = "white";
+    body.appendChild(message);
+
+    for (var i = 0; i < 15; i++) {
+      var balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.backgroundColor = randomColor();
+      body.appendChild(balloon);
+    }
+
+    for (var j = 0; j < 100; j++) {
+      var confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.backgroundColor = randomColor();
+      body.appendChild(confetti);
+    }
+  };
+
+  function randomColor() {
+    var colors = ["#ffcccc", "#ff99ff", "#ffcc99", "#cc99ff", "#99ccff", "#ffff99"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+</script>
+</body>
+</html>
